@@ -1,0 +1,22 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'connection' object.id %}">
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+        {% if subfolder %}
+            {% for item in subfolder_list %}
+                {% if forloop.last %}
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{ item.name }}
+                </li>
+                {% else %}
+                <li class="breadcrumb-item">
+                    <a href="{% url 'connection' object.pk %}?path={{ item.path }}">{{ item.name }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ol>
+</nav>
