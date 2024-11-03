@@ -9,8 +9,20 @@
     <title>File Browser</title>
     
     <style>
-        ul { list-style-type: none; }
-        .directory { font-weight: bold; }
+        .table td, .table th {
+            padding: 13px;
+            font-size: 14px;
+        }
+
+        tbody tr:hover td {
+            background-color: #f1f1f1; /* Altera o fundo das células quando a linha é hover */
+        }
+
+        /* Suaviza a transição de cor */
+        tbody tr {
+            transition: background-color 0.3s; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>

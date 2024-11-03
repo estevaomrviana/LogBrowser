@@ -1,35 +1,45 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for file in file_list %}
-        <tr>
-            <td>
+
+<div class="table-responsive">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th class="text-secondary">Nome</th>
+                <th class="text-secondary">Tipo</th>
+                <!-- <th class="text-secondary">Ações</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in file_list %}
+            <tr
                 {% if file.type == 'directory' %}
-                <i class="fas fa-folder"></i> 
+                    onclick="location.href='{% url 'connection' object.id %}?path={{ file.path }}&type=directory'"
                 {% else %}
-                <i class="fas fa-file"></i> 
+                    onclick="location.href='{% url 'connection' object.id %}?path={{ file.path }}&type=file'"
                 {% endif %}
-                {{ file.name }}
-            </td>
-            <td>{{ file.type }}</td>
-            <td>
-                {% if file.type == 'directory' %}
-                    <a href="{% url 'connection' object.id %}?path={{ file.path }}&type=directory">Abrir pasta</a>
-                {% else %}
-                    <a href="{% url 'connection' object.id %}?path={{ file.path }}&type=file">Ler Arquivo</a>
-                {% endif %}
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">Nenhum arquivo ou pasta encontrado.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            >
+                <td>
+                    {% if file.type == 'directory' %}
+                    <i class="fas fa-folder text-warning"></i> 
+                    {% else %}
+                    <i class="fas fa-file text-secondary"></i> 
+                    {% endif %}
+                    {{ file.name }}
+                </td>
+                <td>{{ file.type }}</td>
+                <!-- <td>
+                    {% if file.type == 'directory' %}
+                        <a href="{% url 'connection' object.id %}?path={{ file.path }}&type=directory">Abrir pasta</a>
+                    {% else %}
+                        <a href="{% url 'connection' object.id %}?path={{ file.path }}&type=file">Ler Arquivo</a>
+                    {% endif %}
+                </td> -->
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum arquivo ou pasta encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
