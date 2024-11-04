@@ -1,0 +1,45 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-center justify-content-center min-vh-100">
+            
+            <div class="col-12 col-sm-8 col-md-4 p-4 border rounded">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    <h4 class="text-center mb-4"> 
+                        Entrar
+                    </h4>
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuário</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Inserir usuário" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Inserir senha" required>
+                    </div>
+
+                    <br>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg" >Entrar <i class="lni lni-enter"></i></button>
+                    </div>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+    
+</body>
+</html>
+
