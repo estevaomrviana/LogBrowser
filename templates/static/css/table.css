@@ -1,0 +1,15 @@
+
+.table-path .table td, .table th {
+    padding: 13px !important;
+    font-size: 14px !important;
+}
+
+.table-path tbody tr:hover td {
+    background-color: rgba(128, 128, 128, 0.251);
+    color: black;
+}
+
+.table-path tbody tr {
+    transition: background-color 0.3s; 
+    cursor: pointer;
+}
