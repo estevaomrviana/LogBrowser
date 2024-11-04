@@ -12,12 +12,15 @@
 
     <link href="{% static 'css/table.css' %}" rel="stylesheet" type="text/css">
 
-    <title>File Browser</title>
-    
+    <title>{% block title %}File Browser{% endblock %}</title>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
     {% block content %}
     {% endblock %}
     <script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+    {% block extra_js %}
+    {% endblock %}
 </body>
 </html>
