@@ -13,6 +13,9 @@
 
                 {% if subfolder %}
                     {% for item in subfolder_list %}
+                    {% if forloop.first %}
+                    <li class="nav-item"><a class="nav-link">/</a></li>
+                    {% endif %}
                     {% if forloop.last %}
                     <li class="nav-item">
                         <a class="nav-link active">{{ item.name }}</a>
@@ -21,11 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'connection' object.pk %}?path={{ item.path }}">{{ item.name }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            /
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link">/</a></li>
                     {% endif %}
                     {% endfor %}
                 {% endif %}
