@@ -1,17 +1,25 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, View
+from django.contrib.auth import logout
+from django.views.generic import DetailView
+from django.shortcuts import get_object_or_404, redirect
 import paramiko
 from .models import SSHConnection
 from .utils import transform_path
+
+
 
 
 class ConnectionView(LoginRequiredMixin, DetailView):
     model = SSHConnection
     template_name = 'connection/overview.html'
 
-    def get_object(self, queryset=None):
-        return get_object_or_404(self.model, id=self.kwargs.get('pk'), owner=self.request.user)
+    def dispatch(self, request, *args, **kwargs):
+        
+        if self.get_object().owner != self.request.user:
+            logout(self.request)
+            return redirect('logout')
+
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
